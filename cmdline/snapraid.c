@@ -1087,6 +1087,7 @@ int main(int argc, char* argv[])
 	case OPERATION_CHECK :
 	case OPERATION_FIX :
 	case OPERATION_DRY :
+	case OPERATION_LIST :
 		break;
 	default :
 		if (!tommy_list_empty(&filterlist_disk)) {
@@ -1444,6 +1445,10 @@ int main(int argc, char* argv[])
 		state_dup(&state);
 	} else if (operation == OPERATION_LIST) {
 		state_read(&state);
+
+		/* filter */
+		state_skip(&state);
+		state_filter(&state, &filterlist_file, &filterlist_disk, filter_missing, filter_error);
 
 		state_list(&state);
 	} else if (operation == OPERATION_POOL) {
