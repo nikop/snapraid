@@ -26,7 +26,7 @@
 /****************************************************************************/
 /* list */
 
-void state_list(struct snapraid_state* state, int filter)
+void state_list(struct snapraid_state* state)
 {
 	tommy_node* i;
 	unsigned file_count;
@@ -58,11 +58,11 @@ void state_list(struct snapraid_state* state, int filter)
 			struct tm* tm;
 			time_t t;
 
-			++file_count;
-			file_size += file->size;
-
 			if (file_flag_has(file, FILE_IS_EXCLUDED))
 				continue;
+
+			++file_count;
+			file_size += file->size;
 
 			log_tag("file:%s:%s:%" PRIu64 ":%" PRIi64 ":%u:%" PRIi64 "\n", disk->name, esc_tag(file->sub, esc_buffer), file->size, file->mtime_sec, file->mtime_nsec, file->inode);
 
