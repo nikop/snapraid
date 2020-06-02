@@ -1450,7 +1450,7 @@ int main(int argc, char* argv[])
 		state_skip(&state);
 		state_filter(&state, &filterlist_file, &filterlist_disk, filter_missing, filter_error);
 
-		state_list(&state);
+		state_list(&state, filter_error != 0 ? 1 : 0);
 	} else if (operation == OPERATION_POOL) {
 		state_read(&state);
 
