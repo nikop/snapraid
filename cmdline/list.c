@@ -61,7 +61,7 @@ void state_list(struct snapraid_state* state, int filter)
 			++file_count;
 			file_size += file->size;
 
-			if (file_flag_has(file, FILE_IS_EXCLUDED))
+			if (filter == 1 && !file_flag_has(file, FILE_IS_EXCLUDED))
 				continue;
 
 			log_tag("file:%s:%s:%" PRIu64 ":%" PRIi64 ":%u:%" PRIi64 "\n", disk->name, esc_tag(file->sub, esc_buffer), file->size, file->mtime_sec, file->mtime_nsec, file->inode);
